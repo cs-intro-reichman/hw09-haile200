@@ -77,9 +77,7 @@ public class LanguageModel {
         mylist.addFirst('t');
         mylist.addFirst('i');
         mylist.addFirst('m');
-        mylist.addFirst('m');
-        mylist.addFirst('o');
-        mylist.addFirst('c');
+   
 
         System.out.println(mylist.toString());
 
