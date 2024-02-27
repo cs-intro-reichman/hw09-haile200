@@ -48,21 +48,21 @@ public class LanguageModel {
             currentCharData = probs.getFirst();
             while (currentCharData != null) {
                 currentCharData.p = (double) currentCharData.count / totalCounter;
-                currentCharData.cp = calculateProbability(currentCharData, probs,totalCounter);
+                currentCharData.cp = calculateProbability(currentCharData, probs);
                 currentCharData = currentCharData.next;
             }
         }
         
-        private double calculateProbability(CharData currentCharData, List probs,int totalCounter) {
-            double cumulatProbability = 0;
+        private double calculateProbability(CharData currentCharData, List probs) {
+            double cumulativeProbability = 0;
             CharData iteratorCharData = probs.getFirst();
         
             while (iteratorCharData != currentCharData) {
-                cumulatProbability += (double) iteratorCharData.count / totalCounter;
+                cumulativeProbability += iteratorCharData.p; 
                 iteratorCharData = iteratorCharData.next;
             }
         
-            return cumulatProbability;
+            return cumulativeProbability;
         }
 
     // Returns a random character from the given probabilities list.
@@ -100,9 +100,10 @@ public class LanguageModel {
         mylist.addFirst('t');
         mylist.addFirst('i');
         mylist.addFirst('m');
-   
-
-        System.out.println(mylist.toString());
+        mylist.addFirst('m');
+        mylist.addFirst('o');
+        mylist.addFirst('c');
+        System.out.println(calculateProbabilities(m));
 
         
     }
