@@ -70,6 +70,7 @@ public class LanguageModel {
 
     public static void main(String[] args) {
 		List mylist =new List ();
+        mylist.addFirst(' ');
         mylist.addFirst('e');
         mylist.addFirst('e'); 
         mylist.addFirst('t');
@@ -79,7 +80,7 @@ public class LanguageModel {
         mylist.addFirst('m');
         mylist.addFirst('o');
         mylist.addFirst('c');
-        
+
         System.out.println(mylist.toString());
 
         
