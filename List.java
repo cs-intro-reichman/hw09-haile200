@@ -41,16 +41,12 @@ public class List {
         size++;
     }
     /** GIVE Textual representation of this list. */
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-        Node current = first;
-        
-        while (current != null && current.cp != null) {
-            result.append(current.cp.toString());  // Assuming charData has a proper toString method
-            current = current.next;
-        }
-        
-        return result.toString();
+        public String toString() {
+            String builder = "(";
+            for (int i = 0; i < size; i++) {
+                builder += this.listIterator(i).current + " ";
+            }
+            return builder.substring(0, builder.length() - 1) + ")";
     }
     /** Returns the index of the first CharData object in this list
      *  that has the same chr value as the given char,
