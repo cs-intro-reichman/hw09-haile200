@@ -42,11 +42,11 @@ public class List {
     }
     /** GIVE Textual representation of this list. */
         public String toString() {
-            String builder = "(";
+            String ans ="";
             for (int i = 0; i < size; i++) {
-                builder += this.listIterator(i).current + " ";
+                ans += listIterator(i).current + " ";
             }
-            return builder.substring(0, builder.length() - 1) + ")";
+            return ans;
     }
     /** Returns the index of the first CharData object in this list
      *  that has the same chr value as the given char,
