@@ -42,12 +42,14 @@ public class List {
     }
     /** GIVE Textual representation of this list. */
     public String toString() {
-        String result="";
+        StringBuilder result = new StringBuilder();
         Node current = first;
-        while (current!=null && current.cp != null) {
-            result+=current.toString();
-            current=current.next;
+        
+        while (current != null && current.cp != null) {
+            result.append(current.cp.toString());  // Assuming charData has a proper toString method
+            current = current.next;
         }
+        
         return result.toString();
     }
     /** Returns the index of the first CharData object in this list
