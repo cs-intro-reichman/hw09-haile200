@@ -73,13 +73,7 @@ public class List {
         if(indexOf(chr)==-1){
             addFirst(chr);
         }
-        Node current = first;
-        while (current != null && current.cp!=null) {
-            if (current.cp.equals(chr)) {
-                current.cp.count++;
-            }
-            current=current.next;
-        }
+        listIterator(indexOf(chr)).current.cp.count++;
     }
 
     /** GIVE If the given character exists in one of the CharData objects
