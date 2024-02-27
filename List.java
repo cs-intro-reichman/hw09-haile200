@@ -29,13 +29,17 @@ public class List {
 
     /** GIVE Adds a CharData object with the given character to the beginning of this list. */
     public void addFirst(char chr) {
-        CharData newData=new CharData(chr);
-        Node newNode=new Node(newData);
-        newNode.next=first;
-        first=newNode;
+        CharData newData = new CharData(chr);
+        Node newNode = new Node(newData);
+        // if the  list empty
+        if (first == null) {
+            first = newNode;
+        } else {
+            newNode.next = first;
+            first = newNode;
+        }
         size++;
     }
-    
     /** GIVE Textual representation of this list. */
     public String toString() {
         StringBuilder result = new StringBuilder();
