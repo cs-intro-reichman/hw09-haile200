@@ -38,15 +38,15 @@ public class List {
     
     /** GIVE Textual representation of this list. */
     public String toString() {
-        String ans ="";
+        StringBuilder result = new StringBuilder();
         Node current = first;
-        while (current != null) {
-            ans += current.cp.toString();
+        while (current != null && current.cp != null) {
+            result.append(current.cp.chr);
             current = current.next;
         }
-        return ans;
+    
+        return result.toString();
     }
-
     /** Returns the index of the first CharData object in this list
      *  that has the same chr value as the given char,
      *  or -1 if there is no such object in this list. */
