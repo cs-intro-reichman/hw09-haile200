@@ -15,12 +15,15 @@ public class CharData {
 	// a commulative probability (number between 0 and 1)
 	double cp;
 
+	//a pointer to a CharData object
+	CharData next;
 	/** Creates and initializes a character data object. */
 	public CharData(char chr) {
 		this.chr = chr;
 		this.count = 1;
 		this.p = 0;
 		this.cp = 0;
+
 	}
 
 	/** Checks if the character of this CharData object equals the given character. */
