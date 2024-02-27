@@ -42,14 +42,13 @@ public class List {
     }
     /** GIVE Textual representation of this list. */
     public String toString() {
-        StringBuilder result = new StringBuilder();
+        String result ="";
         Node current = first;
-        while (current != null && current.cp != null) {
-            result.append(current.cp.chr);
-            current = current.next;
+        while (current!=null && current.cp != null) {
+            result+=current;
+            current=current.next;
         }
-    
-        return result.toString();
+        return result;
     }
     /** Returns the index of the first CharData object in this list
      *  that has the same chr value as the given char,
@@ -77,8 +76,8 @@ public class List {
             addFirst(chr);
         }
         Node current = first;
-        while (current != null) {
-            if (current.cp.equals(chr)) {
+        while (current != null && current.cp!=null) {
+            if (current.cp.chr==chr) {
                 current.cp.count++;
             }
         }
