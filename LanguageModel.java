@@ -65,31 +65,31 @@ public class LanguageModel {
             return cumulativeProbability;
         }
 
-    // Returns a random character from the given probabilities list.
-	public char getRandomChar(List probs) {
-		// Your code goes here
-	}
+    // // Returns a random character from the given probabilities list.
+	// public char getRandomChar(List probs) {
+	// 	// Your code goes here
+	// }
 
-    /**
-	 * Generates a random text, based on the probabilities that were learned during training. 
-	 * @param initialText - text to start with. If initialText's last substring of size numberOfLetters
-	 * doesn't appear as a key in Map, we generate no text and return only the initial text. 
-	 * @param numberOfLetters - the size of text to generate
-	 * @return the generated text
-	 */
-	public String generate(String initialText, int textLength) {
-		// Your code goes here
-	}
+    // /**
+	//  * Generates a random text, based on the probabilities that were learned during training. 
+	//  * @param initialText - text to start with. If initialText's last substring of size numberOfLetters
+	//  * doesn't appear as a key in Map, we generate no text and return only the initial text. 
+	//  * @param numberOfLetters - the size of text to generate
+	//  * @return the generated text
+	//  */
+	// public String generate(String initialText, int textLength) {
+	// 	// Your code goes here
+	// }
 
-    /** Returns a string representing the map of this language model. */
-	public String toString() {
-		StringBuilder str = new StringBuilder();
-		for (String key : CharDataMap.keySet()) {
-			List keyProbs = CharDataMap.get(key);
-			str.append(key + " : " + keyProbs + "\n");
-		}
-		return str.toString();
-	}
+    // /** Returns a string representing the map of this language model. */
+	// public String toString() {
+	// 	StringBuilder str = new StringBuilder();
+	// 	for (String key : CharDataMap.keySet()) {
+	// 		List keyProbs = CharDataMap.get(key);
+	// 		str.append(key + " : " + keyProbs + "\n");
+	// 	}
+	// 	return str.toString();
+	// }
 
     public static void main(String[] args) {
 		List mylist =new List ();
@@ -103,7 +103,7 @@ public class LanguageModel {
         mylist.addFirst('m');
         mylist.addFirst('o');
         mylist.addFirst('c');
-        System.out.println(calculateProbabilities(m));
+       calculateProbabilities(mylist);
 
         
     }
