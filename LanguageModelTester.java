@@ -4,7 +4,7 @@ import java.io.FileWriter;
 
 public class LanguageModelTester {
         public static void main(String[] args) {
-        String methodName = args[0];
+        String methodName =args[0];
         boolean result = false;
         switch (methodName) {
             case "calculateProbabilities":
@@ -151,7 +151,12 @@ public class LanguageModelTester {
     // Test method for the generate() method
     public static boolean testGenerate() {
         LanguageModel languageModel = new LanguageModel(7,20);
-        languageModel.train("originofspecies.txt");
+        try {
+            languageModel.train("originofspecies.txt");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         String generatedText = languageModel.generate("Natural", 172);
         String expectedGeneratedText = "Natural selection, how is it possible, generally much changed\n"+
         "simultaneous rotation, when the importance of Batrachians, 393.\n"+

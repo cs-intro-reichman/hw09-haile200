@@ -56,21 +56,6 @@ public class LanguageModel {
         }
     }
 
- private void updateList(HashMap<String, List> charDataMap, String window, char nextChar) {
-    if (charDataMap.containsKey(window)) {
-        // If the window is already present, update the list
-        List charList = charDataMap.get(window);
-
-        if (charList == null || charList.get(charList.getSize() - 1) != nextChar) {
-            ( charList).addFirst(nextChar);
-        }
-    } else {
-        // If the window is seen for the first time, create a new entry in the map
-        newList = new HashMap<String, List>();
-        newList.add(nextChar);
-        charDataMap.put(window, newList);
-    }
-}
     // Computes and sets the probabilities (p and cp fields) of all the
 	// characters in the given list. */
 	public void calculateProbabilities(List probs) {
