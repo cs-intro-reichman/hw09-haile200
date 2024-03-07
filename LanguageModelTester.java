@@ -149,7 +149,7 @@ public class LanguageModelTester {
 
 
     // Test method for the generate() method
-    public static boolean testGenerate() {
+    public static boolean testGenerate() throws Exception {
         LanguageModel languageModel = new LanguageModel(7,20);
         languageModel.train("originofspecies.txt");
         String generatedText = languageModel.generate("Natural", 172);

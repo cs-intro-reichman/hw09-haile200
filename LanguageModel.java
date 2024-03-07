@@ -1,7 +1,5 @@
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Random;
 
 public class LanguageModel {
@@ -117,8 +115,30 @@ public class LanguageModel {
 	 * @return the generated text
 	 */
 	public String generate(String initialText, int textLength) {
-		// Your code goes here
-	}
+        StringBuilder generatedText = new StringBuilder(initialText);
+
+        for (int i = 0; i <textLength; i++) {
+            String window = generatedText.substring(generatedText.length() - windowLength);
+            
+            if (CharDataMap.containsKey(window)) {
+                List charList = CharDataMap.get(window);
+
+                if (charList!=null) {
+                    char nextChar = getRandomChar(charList);
+                    generatedText.append(nextChar);
+                } else {
+                    // Handle the case where the list is empty
+                    break;
+                }
+            } else {
+                // Handle the case where the window is not found in the map
+                break;
+            }
+        }
+
+        return generatedText.toString();
+    }
+
 
     /** Returns a string representing the map of this language model. */
 	public String toString() {
