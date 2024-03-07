@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.FileWriter;
 
 public class LanguageModelTester {
-        public static void main(String[] args) {
+        public static void main(String[] args) throws Exception {
         String methodName = args[0];
         boolean result = false;
         switch (methodName) {
@@ -149,14 +149,13 @@ public class LanguageModelTester {
 
 
     // Test method for the generate() method
-    public static boolean testGenerate() {
+    public static boolean testGenerate() throws Exception {
         LanguageModel languageModel = new LanguageModel(7,20);
         languageModel.train("originofspecies.txt");
         String generatedText = languageModel.generate("Natural", 172);
         String expectedGeneratedText = "Natural selection, how is it possible, generally much changed\n"+
         "simultaneous rotation, when the importance of Batrachians, 393.\n"+
         "  Batrachians (frogs, toads, newts) have to modified ";
-
         boolean res = stringEqualsNoSpaces(generatedText, expectedGeneratedText);
         if (!res){
             System.out.println("Expected: " + expectedGeneratedText);
@@ -165,6 +164,7 @@ public class LanguageModelTester {
         }
         return res;
     }
+    
 
     private static boolean stringEqualsNoSpaces(String s1, String s2) {
         s1 = s1.replaceAll("\\s+", "");

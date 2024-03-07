@@ -21,6 +21,7 @@ public class CharData {
 		this.count = 1;
 		this.p = 0;
 		this.cp = 0;
+
 	}
 
 	/** Checks if the character of this CharData object equals the given character. */
@@ -32,4 +33,5 @@ public class CharData {
 	public String toString() {
 		return "(" + chr + " " + count + " " + p + " " + cp + ")";
 	}
+
 }
