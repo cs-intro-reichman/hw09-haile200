@@ -20,7 +20,7 @@ public class List {
     }
 
     public Node getFirstNode(){
-        return this.first;
+        return first;
       } 
 
     /** Returns the number of elements in this list. */
@@ -152,4 +152,5 @@ public class List {
         // Returns an iterator that starts in that element
 	    return new ListIterator(current);
     }
+
 }
