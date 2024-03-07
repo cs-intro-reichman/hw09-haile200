@@ -116,7 +116,6 @@ public class LanguageModel {
 	 */
 	public String generate(String initialText, int textLength) {
         StringBuilder generatedText = new StringBuilder(initialText);
-
         for (int i = 0; i <textLength; i++) {
             String window = generatedText.substring(generatedText.length() - windowLength);
             
