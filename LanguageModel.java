@@ -1,4 +1,7 @@
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class LanguageModel {
@@ -31,80 +34,128 @@ public class LanguageModel {
         CharDataMap = new HashMap<String, List>();
     }
 
-    /** Builds a language model from the text in the given file (the corpus). */
-	public void train(String fileName) {
-	}
+    /** Builds a language model from the text in the given file (the corpus). 
+     * @throws Exception */
+	public void train(String fileName) throws Exception {
+           In reader = new In(fileName); 
+            CharDataMap = new HashMap<>();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                processLine(line);
+            }
+            throw new Exception("Error reading the file");
+    }
+    
+    private void processLine(String line) {
+        for (int i = 0; i <= line.length() - windowLength; i++) {
+            String window = line.substring(i, i + windowLength);
+            char nextChar = (i + windowLength < line.length()) ? line.charAt(i + windowLength) : '\0';
+    
+            // Update CharDataMap based on the window and nextChar
+            // You will need to handle cases where the window is seen for the first time or not
+        }
+    }
 
+ private void updateList(HashMap<String, List> charDataMap, String window, char nextChar) {
+    if (charDataMap.containsKey(window)) {
+        // If the window is already present, update the list
+        List charList = charDataMap.get(window);
+
+        if (charList == null || charList.get(charList.getSize() - 1) != nextChar) {
+            ( charList).addFirst(nextChar);
+        }
+    } else {
+        // If the window is seen for the first time, create a new entry in the map
+        newList = new HashMap<String, List>();
+        newList.add(nextChar);
+        charDataMap.put(window, newList);
+    }
+}
     // Computes and sets the probabilities (p and cp fields) of all the
 	// characters in the given list. */
 	public void calculateProbabilities(List probs) {
-            int totalCounter = 0;
-            CharData currentCharData = probs.getFirst();
-            while (currentCharData != null) {
-                totalCounter += currentCharData.count;
-                currentCharData = currentCharData.next;
-            }
-        
-            currentCharData = probs.getFirst();
-            while (currentCharData != null) {
-                currentCharData.p = (double) currentCharData.count / totalCounter;
-                currentCharData.cp = calculateProbability(currentCharData, probs);
-                currentCharData = currentCharData.next;
-            }
+        if (probs == null || probs.getFirstNode() == null) {
+            throw new IllegalArgumentException("The probability list is null or empty");
         }
-        
-        private double calculateProbability(CharData currentCharData, List probs) {
-            double cumulativeProbability = 0;
-            CharData iteratorCharData = probs.getFirst();
-        
-            while (iteratorCharData != currentCharData) {
-                cumulativeProbability += iteratorCharData.p; 
-                iteratorCharData = iteratorCharData.next;
-            }
-        
-            return cumulativeProbability;
+        // Calculate the total number of characters
+        int totalCounter = 0;
+        Node current = probs.getFirstNode();
+        while (current != null) {
+            totalCounter += current.cp.count;
+            current = current.next;
         }
+    
+        // Calculate and set the probabilities (p and cp fields) of all the characters in the list
+        current = probs.getFirstNode();
+        double cumulativeProbability = 0.0;
+        while (current != null) {
+            // Calculate probability (p field)
+            current.cp.p = (double) current.cp.count / totalCounter;
+    
+            // Calculate cumulative probability (cp field)
+            cumulativeProbability += current.cp.p;
+            current.cp.cp = cumulativeProbability;
+    
+            current = current.next;
+        }
+    }
+    // Returns a random character from the given probabilities list.
+	public char getRandomChar(List probs) {
+        if (probs == null || probs.getFirstNode() == null) {
+            throw new IllegalArgumentException("The probability list is null or empty");
+        }
+    
+        double randomValue = randomGenerator.nextDouble();
+        char result = 0;  // default value
+    
+        Node current = probs.getFirstNode();
+        while (current != null) {
+            if (randomValue < current.cp.cp) {
+                result = current.cp.chr;
+                break;
+            }
+            current = current.next;
+        }
+    
+        if (result == 0) {
+            throw new IllegalStateException("Unable to determine a random character");
+        }
+    
+        return result;
+    }
 
-    // // Returns a random character from the given probabilities list.
-	// public char getRandomChar(List probs) {
-	// 	// Your code goes here
-	// }
+    /**
+	 * Generates a random text, based on the probabilities that were learned during training. 
+	 * @param initialText - text to start with. If initialText's last substring of size numberOfLetters
+	 * doesn't appear as a key in Map, we generate no text and return only the initial text. 
+	 * @param numberOfLetters - the size of text to generate
+	 * @return the generated text
+	 */
+	public String generate(String initialText, int textLength) {
+		// Your code goes here
+	}
 
-    // /**
-	//  * Generates a random text, based on the probabilities that were learned during training. 
-	//  * @param initialText - text to start with. If initialText's last substring of size numberOfLetters
-	//  * doesn't appear as a key in Map, we generate no text and return only the initial text. 
-	//  * @param numberOfLetters - the size of text to generate
-	//  * @return the generated text
-	//  */
-	// public String generate(String initialText, int textLength) {
-	// 	// Your code goes here
-	// }
-
-    // /** Returns a string representing the map of this language model. */
-	// public String toString() {
-	// 	StringBuilder str = new StringBuilder();
-	// 	for (String key : CharDataMap.keySet()) {
-	// 		List keyProbs = CharDataMap.get(key);
-	// 		str.append(key + " : " + keyProbs + "\n");
-	// 	}
-	// 	return str.toString();
-	// }
+    /** Returns a string representing the map of this language model. */
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		for (String key : CharDataMap.keySet()) {
+			List keyProbs = CharDataMap.get(key);
+			str.append(key + " : " + keyProbs + "\n");
+		}
+		return str.toString();
+	}
 
     public static void main(String[] args) {
 		List mylist =new List ();
         mylist.addFirst(' ');
         mylist.addFirst('e');
         mylist.addFirst('e'); 
-        mylist.addFirst('t');
+        mylist.addFirst('t'); 
         mylist.addFirst('t');
         mylist.addFirst('i');
-        mylist.addFirst('m');
-        mylist.addFirst('m');
+        mylist.addFirst('m'); 
+        mylist.addFirst('m'); 
         mylist.addFirst('o');
         mylist.addFirst('c');
-       calculateProbabilities(mylist);
-
-        
     }
 }

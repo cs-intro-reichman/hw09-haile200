@@ -10,12 +10,18 @@ public class List {
 
     // The number of elements in this list
     private int size;
+
+    public char chr;
 	
     /** Constructs an empty list. */
     public List() {
         first = null;
         size = 0;
     }
+
+    public Node getFirstNode(){
+        return this.first;
+      } 
 
     /** Returns the number of elements in this list. */
     public int getSize() {
@@ -76,8 +82,8 @@ public class List {
         } else {
             ListIterator iterator = listIterator(index);
             iterator.current.cp.count++;
+            }
         }
-    }
 
     /** GIVE If the given character exists in one of the CharData objects
      *  in this list, removes this CharData object from the list and returns

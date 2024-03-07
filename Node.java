@@ -4,10 +4,12 @@ public class Node {
    
     // a pointer to a CharData object
     CharData cp;
- 
+    
     // a pointer to a Node object
     Node next;  // pointer
- 
+
+
+   
     /** Constructs a node with the given CharData object.
      *  The new node will point to the given next node. */
     public Node(CharData cp, Node next) {
@@ -20,6 +22,14 @@ public class Node {
     public Node(CharData cp) {
        this(cp, null);
     }
+
+    private Node (){
+
+    }
+
+    public Node getFirst(){
+      return this;
+    } 
  
     /** Textual representation of this node. */
     public String toString() {

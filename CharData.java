@@ -15,8 +15,6 @@ public class CharData {
 	// a commulative probability (number between 0 and 1)
 	double cp;
 
-	//a pointer to a CharData object
-	CharData next;
 	/** Creates and initializes a character data object. */
 	public CharData(char chr) {
 		this.chr = chr;
